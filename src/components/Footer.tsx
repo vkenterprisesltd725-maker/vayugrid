@@ -10,6 +10,22 @@ import {
 } from 'lucide-react';
 import type { SitePageId } from '../types';
 
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-3 h-3' }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
 interface FooterProps {
   onOpenPage: (pageId: SitePageId) => void;
   liquidGlassEnabled?: boolean;
@@ -98,6 +114,18 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li>
               <a
+                href="https://instagram.com/vedatech_29"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#52525B] hover:text-[#09090B] hover:underline inline-flex items-center space-x-1"
+              >
+                <InstagramIcon className="w-3 h-3 text-pink-600" />
+                <span>Instagram (@VEDATECH_29)</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+              </a>
+            </li>
+            <li>
+              <a
                 href="https://github.com/vkenterprisesltd725-maker/vayugrid"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -147,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({
             </li>
             <li className="pt-1">
               <span className="text-[10px] text-[#71717A] font-mono block">
-                Support: vkenterprisesltd725@gmail.com
+                Support: vika.in.tech725@gmail.com
               </span>
             </li>
           </ul>

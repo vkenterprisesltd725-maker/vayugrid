@@ -21,6 +21,22 @@ import {
 } from 'lucide-react';
 import type { SitePageId } from '../types';
 
+const InstagramIcon: React.FC<{ className?: string }> = ({ className = 'w-3.5 h-3.5' }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+  </svg>
+);
+
 interface SitePagesModalProps {
   isOpen: boolean;
   initialPage?: SitePageId;
@@ -150,7 +166,8 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
 
             <div className="hidden md:block mt-auto pt-4 border-t border-[#E4E4E7] px-2 text-[11px] text-[#71717A] space-y-1">
               <div className="font-medium text-[#09090B]">VIKABUILDS Studio</div>
-              <div>vkenterprisesltd725@gmail.com</div>
+              <a href="mailto:vika.in.tech725@gmail.com" className="text-sky-700 hover:underline block truncate">vika.in.tech725@gmail.com</a>
+              <a href="https://instagram.com/vedatech_29" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline font-mono text-[10px] block">Instagram: @VEDATECH_29</a>
               <div className="font-mono text-[10px] text-zinc-400">v1.0 Production Build</div>
             </div>
           </div>
@@ -196,11 +213,21 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
                       <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
                     </a>
                     <a
-                      href="mailto:vkenterprisesltd725@gmail.com"
+                      href="https://instagram.com/vedatech_29"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium rounded-[4px] bg-gradient-to-r from-pink-500 to-rose-500 text-white hover:opacity-90 transition-opacity shadow-xs"
+                    >
+                      <InstagramIcon className="w-3.5 h-3.5" />
+                      <span>@VEDATECH_29</span>
+                      <ExternalLink className="w-3 h-3 ml-0.5 opacity-70" />
+                    </a>
+                    <a
+                      href="mailto:vika.in.tech725@gmail.com"
                       className="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium rounded-[4px] bg-white border border-[#E4E4E7] text-[#09090B] hover:bg-[#F4F4F5] transition-colors"
                     >
                       <Mail className="w-3.5 h-3.5 text-rose-500" />
-                      <span>vkenterprisesltd725@gmail.com</span>
+                      <span>vika.in.tech725@gmail.com</span>
                     </a>
                   </div>
                 </div>
@@ -423,29 +450,60 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
                 )}
 
                 {/* Direct Contact Cards */}
-                <div className="pt-4 border-t border-[#E4E4E7] grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 border border-[#E4E4E7] rounded-[6px] bg-[#FAFAFA]">
-                    <div className="font-bold text-[#09090B] mb-1">Direct Creator Email</div>
-                    <a
-                      href="mailto:vkenterprisesltd725@gmail.com"
-                      className="text-sky-700 hover:underline font-mono text-[11px]"
-                    >
-                      vkenterprisesltd725@gmail.com
-                    </a>
-                    <div className="text-[10px] text-[#71717A] mt-1">SLA: Replies in &lt; 24h</div>
+                <div className="pt-4 border-t border-[#E4E4E7] grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                  {/* Email */}
+                  <div className="p-3 border border-[#E4E4E7] rounded-[6px] bg-[#FAFAFA] flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center space-x-1.5 font-bold text-[#09090B] mb-1">
+                        <Mail className="w-3.5 h-3.5 text-rose-500" />
+                        <span>Official Mail</span>
+                      </div>
+                      <a
+                        href="mailto:vika.in.tech725@gmail.com"
+                        className="text-sky-700 hover:underline font-mono text-[11px] break-all block"
+                      >
+                        vika.in.tech725@gmail.com
+                      </a>
+                    </div>
+                    <div className="text-[10px] text-[#71717A] mt-2 font-mono">SLA: Replies in &lt; 24h</div>
                   </div>
 
-                  <div className="p-3 border border-[#E4E4E7] rounded-[6px] bg-[#FAFAFA]">
-                    <div className="font-bold text-[#09090B] mb-1">Open Source Repository</div>
-                    <a
-                      href="https://github.com/vkenterprisesltd725-maker/vayugrid"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sky-700 hover:underline font-mono text-[11px] truncate block"
-                    >
-                      github.com/vkenterprisesltd725-maker/vayugrid
-                    </a>
-                    <div className="text-[10px] text-[#71717A] mt-1">Issues & PRs welcome</div>
+                  {/* Instagram */}
+                  <div className="p-3 border border-[#E4E4E7] rounded-[6px] bg-[#FAFAFA] flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center space-x-1.5 font-bold text-[#09090B] mb-1">
+                        <InstagramIcon className="w-3.5 h-3.5 text-pink-600" />
+                        <span>Instagram</span>
+                      </div>
+                      <a
+                        href="https://instagram.com/vedatech_29"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-pink-700 hover:underline font-mono text-[11px] font-semibold block"
+                      >
+                        @VEDATECH_29
+                      </a>
+                    </div>
+                    <div className="text-[10px] text-[#71717A] mt-2">DMs & Updates Open</div>
+                  </div>
+
+                  {/* GitHub Repo */}
+                  <div className="p-3 border border-[#E4E4E7] rounded-[6px] bg-[#FAFAFA] flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center space-x-1.5 font-bold text-[#09090B] mb-1">
+                        <Code2 className="w-3.5 h-3.5 text-zinc-800" />
+                        <span>GitHub Repo</span>
+                      </div>
+                      <a
+                        href="https://github.com/vkenterprisesltd725-maker/vayugrid"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sky-700 hover:underline font-mono text-[11px] truncate block"
+                      >
+                        github.com/vkenterprisesltd725-maker/vayugrid
+                      </a>
+                    </div>
+                    <div className="text-[10px] text-[#71717A] mt-2">Issues & Source Code</div>
                   </div>
                 </div>
               </div>
@@ -500,7 +558,7 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
                     5. Privacy Inquiries
                   </h2>
                   <p className="text-xs">
-                    For questions regarding our privacy practices, contact us directly at <a href="mailto:vkenterprisesltd725@gmail.com" className="text-sky-700 underline font-mono">vkenterprisesltd725@gmail.com</a>.
+                    For questions regarding our privacy practices, contact us directly at <a href="mailto:vika.in.tech725@gmail.com" className="text-sky-700 underline font-mono">vika.in.tech725@gmail.com</a>.
                   </p>
                 </div>
               </div>
@@ -534,7 +592,7 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
                     2. How to Request a Refund
                   </h2>
                   <p className="text-xs">
-                    To initiate a refund, simply send an email to <a href="mailto:vkenterprisesltd725@gmail.com" className="text-sky-700 underline font-mono">vkenterprisesltd725@gmail.com</a> with the subject line <em>"Refund Request - [Your Order ID]"</em>. Include the email address used during purchase. No explanation is required.
+                    To initiate a refund, simply send an email to <a href="mailto:vika.in.tech725@gmail.com" className="text-sky-700 underline font-mono">vika.in.tech725@gmail.com</a> with the subject line <em>"Refund Request - [Your Order ID]"</em>. Include the email address used during purchase. No explanation is required.
                   </p>
 
                   <h2 className="text-xs font-bold uppercase tracking-wider text-[#09090B]">
@@ -603,7 +661,7 @@ export const SitePagesModal: React.FC<SitePagesModalProps> = ({
                     5. Modifications & Contact
                   </h2>
                   <p className="text-xs">
-                    We reserve the right to modify these terms at any time. Continued use of the platform after updates constitutes agreement. For any inquiries, contact <a href="mailto:vkenterprisesltd725@gmail.com" className="text-sky-700 underline font-mono">vkenterprisesltd725@gmail.com</a>.
+                    We reserve the right to modify these terms at any time. Continued use of the platform after updates constitutes agreement. For any inquiries, contact <a href="mailto:vika.in.tech725@gmail.com" className="text-sky-700 underline font-mono">vika.in.tech725@gmail.com</a>.
                   </p>
                 </div>
               </div>
