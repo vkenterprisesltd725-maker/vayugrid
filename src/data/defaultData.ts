@@ -1,0 +1,183 @@
+import type { City, CrisisScenario, CrisisScenarioId, UserProfile } from '../types';
+
+export const CRISIS_SCENARIOS: Record<CrisisScenarioId, CrisisScenario> = {
+  moderate: {
+    id: 'moderate',
+    label: 'Moderate',
+    aqi: 142,
+    pm25: 64,
+    pm10: 128,
+    statusText: 'Moderate / Caution',
+    statusType: 'moderate',
+    thermalInversionWindow: '06:30–09:00 & 20:30–22:30',
+    description: 'Elevated baseline particulate matter. Mild thermal boundary traps morning emissions.',
+  },
+  winter_smog: {
+    id: 'winter_smog',
+    label: 'Winter Smog',
+    aqi: 295,
+    pm25: 148,
+    pm10: 275,
+    statusText: 'Very Poor',
+    statusType: 'poor',
+    thermalInversionWindow: '05:30–10:30 & 19:00–23:30',
+    description: 'Heavy seasonal thermal inversion capping nocturnal boundary layer. High respiratory risk.',
+  },
+  severe_crisis: {
+    id: 'severe_crisis',
+    label: 'Severe Crisis',
+    aqi: 435,
+    pm25: 312,
+    pm10: 520,
+    statusText: 'Severe Smog Alert',
+    statusType: 'severe',
+    thermalInversionWindow: '05:00–11:30 & 18:00–01:00',
+    description: 'Emergency air pollution episode. Surface wind stagnation with extreme particulate concentration.',
+  },
+};
+
+export const CITIES: City[] = [
+  {
+    id: 'delhi',
+    name: 'New Delhi',
+    country: 'India',
+    landmark: 'India Gate & Central Vista',
+    imageUrl: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 142, pm25: 64, pm10: 128, inversionWindow: '06:30–09:00 & 20:30–22:30' },
+      winter_smog: { aqi: 295, pm25: 148, pm10: 275, inversionWindow: '05:30–10:30 & 19:00–23:30' },
+      severe_crisis: { aqi: 435, pm25: 312, pm10: 520, inversionWindow: '05:00–11:30 & 18:00–01:00' },
+    },
+  },
+  {
+    id: 'ghaziabad',
+    name: 'Ghaziabad',
+    country: 'India',
+    landmark: 'Hindon Corridor & NCR Expressway',
+    imageUrl: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 158, pm25: 72, pm10: 145, inversionWindow: '06:00–09:30 & 20:00–23:00' },
+      winter_smog: { aqi: 320, pm25: 172, pm10: 310, inversionWindow: '05:00–11:00 & 18:30–00:00' },
+      severe_crisis: { aqi: 468, pm25: 345, pm10: 560, inversionWindow: '04:30–12:00 & 17:30–01:30' },
+    },
+  },
+  {
+    id: 'jaipur',
+    name: 'Jaipur',
+    country: 'India',
+    landmark: 'Hawa Mahal Palace',
+    imageUrl: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 118, pm25: 52, pm10: 110, inversionWindow: '07:00–09:00 & 21:00–22:30' },
+      winter_smog: { aqi: 245, pm25: 118, pm10: 220, inversionWindow: '06:00–10:00 & 19:30–23:00' },
+      severe_crisis: { aqi: 382, pm25: 260, pm10: 440, inversionWindow: '05:30–11:00 & 18:30–00:30' },
+    },
+  },
+  {
+    id: 'lahore',
+    name: 'Lahore',
+    country: 'Pakistan',
+    landmark: 'Badshahi Mosque & Walled City',
+    imageUrl: 'https://images.unsplash.com/photo-1596706247941-8f5263690d7c?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 165, pm25: 78, pm10: 155, inversionWindow: '06:00–09:30 & 20:00–23:00' },
+      winter_smog: { aqi: 340, pm25: 190, pm10: 335, inversionWindow: '05:00–11:00 & 18:30–00:30' },
+      severe_crisis: { aqi: 490, pm25: 380, pm10: 610, inversionWindow: '04:30–12:30 & 17:00–02:00' },
+    },
+  },
+  {
+    id: 'beijing',
+    name: 'Beijing',
+    country: 'China',
+    landmark: 'Chaoyang Central Skyline',
+    imageUrl: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 98, pm25: 42, pm10: 85, inversionWindow: '07:00–08:30 & 21:00–22:00' },
+      winter_smog: { aqi: 225, pm25: 110, pm10: 195, inversionWindow: '06:00–09:30 & 20:00–23:00' },
+      severe_crisis: { aqi: 360, pm25: 240, pm10: 410, inversionWindow: '05:30–10:30 & 19:00–00:00' },
+    },
+  },
+  {
+    id: 'tokyo',
+    name: 'Tokyo',
+    country: 'Japan',
+    landmark: 'Shinjuku & Tokyo Tower',
+    imageUrl: 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 45, pm25: 11, pm10: 22, inversionWindow: '07:30–08:30 & 21:30–22:30' },
+      winter_smog: { aqi: 82, pm25: 27, pm10: 48, inversionWindow: '06:30–09:00 & 20:30–22:30' },
+      severe_crisis: { aqi: 155, pm25: 64, pm10: 110, inversionWindow: '05:30–10:00 & 19:00–23:30' },
+    },
+  },
+  {
+    id: 'london',
+    name: 'London',
+    country: 'United Kingdom',
+    landmark: 'Tower Bridge & Thames Corridor',
+    imageUrl: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 52, pm25: 13, pm10: 26, inversionWindow: '07:00–08:30 & 21:00–22:00' },
+      winter_smog: { aqi: 95, pm25: 34, pm10: 58, inversionWindow: '06:00–09:30 & 20:00–22:30' },
+      severe_crisis: { aqi: 168, pm25: 72, pm10: 125, inversionWindow: '05:30–10:30 & 19:00–23:30' },
+    },
+  },
+  {
+    id: 'newyork',
+    name: 'New York',
+    country: 'United States',
+    landmark: 'Manhattan Skyline & Central Park',
+    imageUrl: 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 48, pm25: 12, pm10: 24, inversionWindow: '07:00–08:30 & 21:00–22:00' },
+      winter_smog: { aqi: 88, pm25: 30, pm10: 52, inversionWindow: '06:30–09:00 & 20:30–22:30' },
+      severe_crisis: { aqi: 175, pm25: 78, pm10: 135, inversionWindow: '05:00–10:30 & 18:30–23:30' },
+    },
+  },
+  {
+    id: 'dubai',
+    name: 'Dubai',
+    country: 'UAE',
+    landmark: 'Burj Khalifa & Downtown',
+    imageUrl: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 92, pm25: 32, pm10: 95, inversionWindow: '07:00–09:00 & 20:00–22:30' },
+      winter_smog: { aqi: 168, pm25: 74, pm10: 185, inversionWindow: '06:00–09:30 & 19:30–23:00' },
+      severe_crisis: { aqi: 280, pm25: 145, pm10: 310, inversionWindow: '05:00–11:00 & 18:30–00:30' },
+    },
+  },
+  {
+    id: 'mumbai',
+    name: 'Mumbai',
+    country: 'India',
+    landmark: 'Bandra-Worli Sea Link & Skyline',
+    imageUrl: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 125, pm25: 56, pm10: 115, inversionWindow: '06:30–09:00 & 20:30–22:30' },
+      winter_smog: { aqi: 235, pm25: 112, pm10: 210, inversionWindow: '05:30–10:00 & 19:30–23:00' },
+      severe_crisis: { aqi: 365, pm25: 235, pm10: 395, inversionWindow: '05:00–11:00 & 18:30–00:30' },
+    },
+  },
+  {
+    id: 'custom',
+    name: 'Custom City',
+    country: 'User Configured',
+    landmark: 'User Defined Urban Station',
+    imageUrl: 'https://images.unsplash.com/photo-1477959858617-67f30bc75b82?auto=format&fit=crop&w=800&q=80',
+    scenarios: {
+      moderate: { aqi: 140, pm25: 62, pm10: 125, inversionWindow: '06:30–09:00 & 20:30–22:30' },
+      winter_smog: { aqi: 285, pm25: 140, pm10: 260, inversionWindow: '05:30–10:30 & 19:00–23:30' },
+      severe_crisis: { aqi: 420, pm25: 295, pm10: 490, inversionWindow: '05:00–11:30 & 18:00–01:00' },
+    },
+  },
+];
+
+export const DEFAULT_USER_PROFILE: UserProfile = {
+  cityId: 'delhi',
+  neighborhood: 'residential',
+  risks: ['seniors', 'asthma'],
+  purifier: 'bedroom',
+  ventilation: 'standard',
+  cooking: 'gas_no_exhaust',
+  commute: 'two_wheeler',
+  commuteDistanceKm: 14,
+};
