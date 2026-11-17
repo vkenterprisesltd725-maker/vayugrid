@@ -14,6 +14,7 @@ import type {
   SimulatorControls,
   UserProfile,
   VayuProtocolResponse,
+  SitePageId,
 } from '../types';
 import { CityHeroBanner } from './CityHeroBanner';
 import { CitizenViewBanner } from './CitizenViewBanner';
@@ -21,6 +22,7 @@ import { KpiStrip } from './KpiStrip';
 import { ActionCardItem } from './ActionCardItem';
 import { ExposureSimulator } from './ExposureSimulator';
 import { LiquidGlassChamber } from './LiquidGlassChamber';
+import { Footer } from './Footer';
 
 interface DashboardProps {
   protocol: VayuProtocolResponse;
@@ -38,6 +40,7 @@ interface DashboardProps {
   onOpenJargonBuster?: () => void;
   onDetectLocation?: () => void;
   isDetectingLocation?: boolean;
+  onOpenPage?: (pageId: SitePageId) => void;
 }
 
 type TabType = 'routines' | 'indoorHacks' | 'alternatives';
@@ -57,6 +60,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onOpenJargonBuster,
   onDetectLocation,
   isDetectingLocation = false,
+  onOpenPage,
 }) => {
   const [activeTab, setActiveTab] = useState<TabType>('routines');
 
@@ -255,27 +259,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
         liquidGlassEnabled={liquidGlassEnabled}
       />
 
-      {/* DOMAIN FOOTER: Scientific Grounding Metadata */}
-      <div className="text-[11px] text-[#71717A] border-t border-[#E4E4E7] pt-4 pb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-        <div className="flex items-center space-x-2">
-          <span>Engine Grounding:</span>
-          <span className="font-mono text-[#09090B]">CPCB NAQI (India)</span>
-          <span>•</span>
-          <span className="font-mono text-[#09090B]">WHO 2021 AQG (15 µg/m³)</span>
-          <span>•</span>
-          <span className="font-mono text-[#09090B]">ASHRAE 62.2 Ventilation</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          {liquidGlassEnabled && (
-            <span className="flex items-center space-x-1 text-sky-700 font-medium">
-              <Droplets className="w-3 h-3" />
-              <span>Liquid Glass Optic Mode Active</span>
-              <span>•</span>
-            </span>
-          )}
-          <span>VayuGrid OS v1.0 • Designed for Everyday Citizens & Families</span>
-        </div>
-      </div>
+      {/* HIGH-CRAFT PRODUCTION FOOTER WITH VIKABUILDS & LEGAL PAGES */}
+      <Footer
+        onOpenPage={onOpenPage || (() => {})}
+        liquidGlassEnabled={liquidGlassEnabled}
+      />
     </div>
   );
 };

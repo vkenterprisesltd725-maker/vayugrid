@@ -89,3 +89,12 @@ export interface SimulatorControls {
   runKitchenExhaust: boolean;
   sealBedroomGaps: boolean;
 }
+
+export type SitePageId =
+  | 'vikabuilds'
+  | 'about'
+  | 'contact'
+  | 'privacy'
+  | 'refund'
+  | 'terms';
+

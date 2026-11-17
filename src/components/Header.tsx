@@ -9,8 +9,9 @@ import {
   HelpCircle,
   MapPin,
   Navigation,
+  Sparkles,
 } from 'lucide-react';
-import type { City, CrisisScenario, CrisisScenarioId } from '../types';
+import type { City, CrisisScenario, CrisisScenarioId, SitePageId } from '../types';
 import { CITIES, CRISIS_SCENARIOS } from '../data/defaultData';
 import type { DeviceInfo } from '../hooks/useDeviceDetection';
 import { DeviceModeSelector } from './DeviceModeSelector';
@@ -31,6 +32,7 @@ interface HeaderProps {
   deviceInfo?: DeviceInfo;
   onDetectLocation?: () => void;
   isDetectingLocation?: boolean;
+  onOpenPage?: (pageId: SitePageId) => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -49,6 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
   deviceInfo,
   onDetectLocation,
   isDetectingLocation = false,
+  onOpenPage,
 }) => {
   const [cityMenuOpen, setCityMenuOpen] = useState(false);
   const [customNameInput, setCustomNameInput] = useState(selectedCity.name);
@@ -302,6 +305,23 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <HelpCircle className="w-3.5 h-3.5 text-emerald-600" />
             <span>Plain English</span>
+          </button>
+        )}
+
+        {/* VIKABUILDS & Company Hub */}
+        {onOpenPage && (
+          <button
+            type="button"
+            onClick={() => onOpenPage('vikabuilds')}
+            className={`hidden md:flex items-center space-x-1.5 px-2 py-1 text-xs text-[#09090B] hover:bg-[#F4F4F5] rounded-[4px] border transition-colors cursor-pointer ${
+              liquidGlassEnabled
+                ? 'liquid-glass-pill border-amber-300/40 text-amber-900 font-semibold'
+                : 'bg-white border-[#E4E4E7]'
+            }`}
+            title="VIKABUILDS — About Us, Contact & Policies"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <span className="font-semibold tracking-tight">VIKABUILDS</span>
           </button>
         )}
 

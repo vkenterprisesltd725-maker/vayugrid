@@ -6,6 +6,7 @@ import type {
   SimulatorControls,
   UserProfile,
   VayuProtocolResponse,
+  SitePageId,
 } from './types';
 import { CITIES, CRISIS_SCENARIOS, DEFAULT_USER_PROFILE } from './data/defaultData';
 import {
@@ -31,6 +32,7 @@ import { WorldAqiModal } from './components/WorldAqiModal';
 import { JargonBusterModal } from './components/JargonBusterModal';
 import { EasyChatWidget } from './components/EasyChatWidget';
 import { MobileBottomNav, type MobileTab } from './components/MobileBottomNav';
+import { SitePagesModal } from './components/SitePagesModal';
 import { Toast } from './components/Toast';
 
 const STORAGE_PROFILE_KEY = 'vayugrid_profile';
@@ -132,10 +134,17 @@ export default function App() {
   const [isWorldAqiOpen, setIsWorldAqiOpen] = useState(false);
   const [isJargonBusterOpen, setIsJargonBusterOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isPagesModalOpen, setIsPagesModalOpen] = useState(false);
+  const [activeSitePage, setActiveSitePage] = useState<SitePageId>('vikabuilds');
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const [hasApiKey, setHasApiKey] = useState(() => !!getStoredApiKey());
   const [toastMessage, setToastMessage] = useState('');
   const [showToast, setShowToast] = useState(false);
+
+  const handleOpenPage = useCallback((pageId: SitePageId) => {
+    setActiveSitePage(pageId);
+    setIsPagesModalOpen(true);
+  }, []);
 
   const triggerToast = useCallback((msg: string) => {
     setToastMessage(msg);
@@ -428,6 +437,7 @@ Generated via *VayuGrid OS* — Designed for Families & Citizens`;
         deviceInfo={deviceInfo}
         onDetectLocation={handleDetectLocationAndAddress}
         isDetectingLocation={isDetectingLocation}
+        onOpenPage={handleOpenPage}
       />
 
       {/* Main SaaS Workspace: Sidebar + Canvas (Adaptive by Device) */}
@@ -488,6 +498,7 @@ Generated via *VayuGrid OS* — Designed for Families & Citizens`;
             onOpenJargonBuster={() => setIsJargonBusterOpen(true)}
             onDetectLocation={handleDetectLocationAndAddress}
             isDetectingLocation={isDetectingLocation}
+            onOpenPage={handleOpenPage}
           />
         )}
       </div>
@@ -527,6 +538,15 @@ Generated via *VayuGrid OS* — Designed for Families & Citizens`;
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
         onApiKeySaved={() => setHasApiKey(!!getStoredApiKey())}
+      />
+
+      {/* VIKABUILDS CREATOR & LEGAL PAGES MODAL */}
+      <SitePagesModal
+        isOpen={isPagesModalOpen}
+        initialPage={activeSitePage}
+        onClose={() => setIsPagesModalOpen(false)}
+        liquidGlassEnabled={liquidGlassEnabled}
+        onShowToast={triggerToast}
       />
 
       {/* EASY FLOATING CHAT WIDGET ("Ask Vayu") */}
